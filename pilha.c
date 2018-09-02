@@ -29,28 +29,48 @@ int main(void){
 		if(a==3){
 			excluir(p);
 		}
+		puts("\n\n\n");
 	}
 }
 
 void imprima(elo *a){
-	elo* i;
-	for(i = a->prox; i!=NULL; i = i->prox){
-		printf("%d\n",i->dado);
+	puts("----------------------");
+	/*Esse while imprime até que o ponteiro a aponte 
+	para o último link da LinkedList*/
+	while(a != NULL){
+		printf("%d ",a->dado);
+		a = a->prox;
 	}
+	puts("\n----------------------");
+
 }
 
 void inserir(elo *a){
+	if(a->dado == 0 && a->prox == NULL){
+		int info;
+		printf("Escreva um numero: ");
+		scanf("%i", &info);
+		a->dado = info;
+	}else{
+	
 	int info;
-	elo *nova;
-	nova = (struct elo *)malloc (sizeof(struct elo));
-	printf("Escreva um número:");
-	scanf("%i",&info);
-	nova->dado = info;
-	nova->prox = a->prox;
-	a->prox = nova;
-}
+	elo * b = a;
+	/*	Criado um novo ponteiro para saber
+		onde é o inicio
+	*/	
+		elo *nova = (struct elo *)malloc (sizeof(struct elo));
+		printf("Escreva um número:");
+		scanf("%i",&info);
+		nova->dado = info;
+		nova->prox = NULL;
+		while(b->prox != NULL){
+			b = b->prox;
+		}
+		b->prox= nova;
+}}
 
 void excluir(elo *a){
+	/*Não arrumado ainda*/
 	elo *del;
 	del = a->prox;
 	a->prox = del->prox;
